@@ -393,7 +393,11 @@ span{
     margin-top: 0.1rem;
     margin-bottom: 0.5rem;
     transition: var(--transition);
-    box-shadow: 0 0 5px var(--principal-color), 0 0 5px var(--principal-color), 0 0 5px var(--principal-color);
+    box-shadow: 0 0 2px var(--principal-color), 0 0 2px var(--principal-color), 0 0 2px var(--principal-color);
+}
+
+.project-cards .badge{
+    margin-right: 0.5rem;
 }
 
 #contacto {
