@@ -185,37 +185,40 @@
 
         <section id="contacto">
             <h2>Contactame</h2>
-                <form action="/enviar-datos" method="POST">
+            <!-- Se cambia el action a la API gratuita de FormSubmit -->
+            <form action="https://formsubmit.co/adrix01x@gmail.com" method="POST">
+                
                 <!-- Campo de Texto para el Nombre -->
                 <div>
                     <label for="nombre">Nombre completo:</label>
-                    <input type="text" id="nombre" name="usuario_nombre" required placeholder="Ej. Juan Pérez">
+                    <input type="text" id="nombre" name="Nombre Completo" required placeholder="Ej. Juan Pérez">
                 </div>
 
                 <!-- Campo de Correo Electrónico -->
                 <div>
                     <label for="correo">Correo electrónico:</label>
-                    <input type="email" id="correo" name="usuario_correo" required>
+                    <input type="email" id="correo" name="Correo Electronico" required>
                 </div>
 
                 <!--Campo de Texto del asunto-->
                 <div>
-                <label for="asunto">Asunto:</label>
-                <input type="text" id="asunto" name="usuario_asunto" placeholder="¿En qué puedo ayudarte?">
+                    <label for="asunto">Asunto:</label>
+                    <input type="text" id="asunto" name="Asunto del Mensaje" placeholder="¿En qué puedo ayudarte?">
                 </div>
 
                 <!-- Área de Texto para Mensajes Largos -->
                 <div>
                     <label for="mensaje">Mensaje:</label>
-                    <textarea id="mensaje" name="usuario_mensaje" rows="4" cols="30"></textarea>
+                    <textarea id="mensaje" name="Mensaje Detallado" rows="4" cols="30"></textarea>
                 </div>
 
                 <!-- Botón de Envío -->
                 <div>
                     <button type="submit">Enviar Mensaje</button>
                 </div>
-                </form>
+            </form>
         </section>
+
 
     </main>
     <footer>
