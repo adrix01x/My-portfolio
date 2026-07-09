@@ -252,6 +252,7 @@ ul a:hover{
 }
 
 #sobre-yo{
+    background-image: linear-gradient(to bottom, #121217 20%, var(--second-background) 80%);
     padding-top: 2rem;
     padding-bottom: 2rem;
     min-height: 100vh;
