@@ -28,18 +28,8 @@
         margin-top: 3.5rem;
     }
 
-    #hero h1{
-        width: 100%;
-        font-size: 2.8rem;
-        padding: 0;
-    }
-
-    #hero h2{
-        font-size: 1.3rem;
-    }
-
-    #hero p{
-        font-size: 1.1rem;
+    #hero span{
+        display: none;
     }
     
     section{
@@ -48,5 +38,17 @@
 
     .project-container{
     grid-template-columns:1fr;
+    }
+
+    .project-cards .btn-hero{
+        margin-top: 0.1rem;
+    }
+
+    .btn-hero{
+        margin-top: 1rem;
+    }
+
+    #sobre-yo{
+        background-image: linear-gradient(to bottom, #121217 20%, var(--second-background) 80%);
     }
 }
