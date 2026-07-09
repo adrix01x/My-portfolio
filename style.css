@@ -49,7 +49,40 @@ html, body {
 }
 
 section{
-    padding:2rem 5%;
+    padding:2rem;
+}
+
+.menu-toggle {
+    display: none;
+    background: transparent;
+    border: none;
+    cursor: pointer;
+}
+
+.menu-toggle span {
+    display: block;
+    width: 30px;
+    height: 3px;
+    background: var(--text);
+    margin: 6px;
+    border-radius: 10px;
+    transition: var(--transition);
+}
+
+.menu-toggle.active span:nth-child(1){
+    transform:
+    rotate(45deg)
+    translate(6px,6px);
+}
+
+.menu-toggle.active span:nth-child(2){
+    opacity:0;
+}
+
+.menu-toggle.active span:nth-child(3){
+    transform:
+    rotate(-45deg)
+    translate(7px,-7px);
 }
 
 header {
@@ -58,7 +91,7 @@ header {
     left: 0;           /* Lo pega al borde izquierdo */
     width: 100%;       /* Ancho completo */
     color: white;
-    z-index: 1000;     /* Asegura que quede por encima de todo el contenido */
+    z-index: 99999;     /* Asegura que quede por encima de todo el contenido */
 }
 
 
@@ -136,6 +169,11 @@ ul a:hover{
 }
 
 #hero{
+    width: 100%;
+    background:
+        radial-gradient(circle at 20% 20%, rgba(124, 58, 237, 0.25), transparent 35%),
+        radial-gradient(circle at 80% 30%, rgba(192, 132, 252, 0.18), transparent 35%),
+        linear-gradient(180deg, #18181B 0%, #121217 100%);
      /* Mantiene la sección en pantalla completa restando la altura estimada del menú */
     min-height: calc(100vh - 72px); 
     /* Deja el espacio físico exacto para que el header no tape los títulos */

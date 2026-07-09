@@ -1,0 +1,38 @@
+@media (max-width: 768px) {
+
+    .menu-toggle{
+        display:block;
+    }
+
+    .nav-links{
+        position:absolute;
+        top:100%;
+        left:0;
+        width:100%;
+        flex-direction:column;
+        background:var(--second-background);
+        padding:2rem;
+        transform:translateY(-20px);
+        opacity:0;
+        pointer-events:none;
+        transition:.3s ease;
+    }
+
+    .nav-links.active{
+        transform:translateY(0);
+        opacity:1;
+        pointer-events:auto;
+    }
+    
+    #hero{
+        margin-top: 3.5rem;
+    }
+
+    section{
+        scroll-margin-top: 3.5rem;
+    }
+
+    .project-container{
+    grid-template-columns:1fr;
+    }
+}
