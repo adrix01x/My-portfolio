@@ -28,6 +28,20 @@
         margin-top: 3.5rem;
     }
 
+    #hero h1{
+        width: 100%;
+        font-size: 2.8rem;
+        padding: 0;
+    }
+
+    #hero h2{
+        font-size: 1.3rem;
+    }
+
+    #hero p{
+        font-size: 1.1rem;
+    }
+    
     section{
         scroll-margin-top: 3.5rem;
     }
