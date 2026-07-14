@@ -1,55 +1,35 @@
-const menuBtn = document.querySelector("#menu-toggle");
-const menu = document.querySelector("#nav-links");
-
-
-menuBtn.addEventListener("click",()=>{
-
-    menu.classList.toggle("active");
-    menuBtn.classList.toggle("active");
-
-});
-
-const links = document.querySelectorAll(".nav-links a");
-
-links.forEach(link=>{
-
-    link.addEventListener("click",()=>{
-
-        menu.classList.remove("active");
-        menuBtn.classList.remove("active");
-
-    });
-
-});
-
 document.getElementById('miFormulario').addEventListener('submit', function(event) {
-    event.preventDefault(); 
-    
+    event.preventDefault();
+
     const formulario = event.target;
     const boton = document.getElementById('botonEnviar');
     const estado = document.getElementById('mensajeEstado');
-    
+
     boton.disabled = true;
     boton.innerText = "Enviando...";
     estado.style.color = "black";
     estado.innerText = "Procesando envío...";
 
-    // Enviamos directamente un objeto FormData nativo sin JSON.stringify
-    // Esto es lo que FormSubmit espera recibir para poder leer los textos
+    const formData = new FormData(formulario);
+    const objeto = Object.fromEntries(formData.entries());
+    const json = JSON.stringify(objeto);
+
     fetch(formulario.action, {
-        method: formulario.method,
+        method: "POST",
         headers: {
+            'Content-Type': 'application/json',
             'Accept': 'application/json'
         },
-        body: new FormData(formulario) 
+        body: json
     })
-    .then(response => {
-        if (response.ok) {
+    .then(async (response) => {
+        const data = await response.json();
+        if (response.ok && data.success) {
             estado.style.color = "green";
             estado.innerText = "¡Mensaje enviado con éxito! Me pondré en contacto pronto.";
-            formulario.reset(); // Limpia los campos del formulario
+            formulario.reset();
         } else {
-            throw new Error('Error en la respuesta del servidor');
+            throw new Error(data.message || 'Error en la respuesta del servidor');
         }
     })
     .catch(error => {

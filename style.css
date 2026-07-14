@@ -490,7 +490,7 @@ label {
 }
 
 #contacto textarea {
-    resize: vertical;
+    resize: none;
     min-height: 150px;
 }
 

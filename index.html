@@ -22,14 +22,14 @@
     <meta property="og:url" content="https://adrix01x.github.io/My-portfolio/" />
     <meta property="og:title" content="Adrian.Dev - portfolio" />
     <meta property="og:description" content="Adrian Rodriguez, Desarrollador frontend. Creo soluciones web escalables, limpias y centradas en el rendimiento. Apasionado por resolver problemas técnicos complejos y escribir código optimizado que impulse el crecimiento de tu negocio." />
-    <meta property="og:image" content="https://metatags.io/images/meta-tags.png" />
+    <meta property="og:image" content="img/preview.png" />
 
     <!-- X (Twitter) -->
     <meta property="twitter:card" content="summary_large_image" />
     <meta property="twitter:url" content="https://adrix01x.github.io/My-portfolio/" />
     <meta property="twitter:title" content="Adrian.Dev - portfolio" />
     <meta property="twitter:description" content="Adrian Rodriguez, Desarrollador frontend. Creo soluciones web escalables, limpias y centradas en el rendimiento. Apasionado por resolver problemas técnicos complejos y escribir código optimizado que impulse el crecimiento de tu negocio." />
-    <meta property="twitter:image" content="https://metatags.io/images/meta-tags.png" />
+    <meta property="twitter:image" content="img/preview.png" />
 
     <!-- Meta Tags Generated with https://metatags.io -->
 </head>
@@ -172,7 +172,7 @@
                 <div class="pricing-card">
                 <h3>Landing Page</h3>
                 <p class="description">1 página estructurada (Inicio + Información de valor + Formulario de Contacto).</p>
-                <div class="price">RD$ 9,500 – 12,000</div>
+                <div class="price">Cotizar Servicio</div>
                 </div>
 
                 <!-- Tarjeta 2 -->
@@ -180,21 +180,21 @@
                 <div class="badge">Popular</div>
                 <h3>Web Empresarial</h3>
                 <p class="description">Sitio completo de 4 a 6 secciones independientes para una navegación corporativa estructurada.</p>
-                <div class="price">RD$ 15,000 – 22,000</div>
+                <div class="price">Cotizar Servicio</div>
                 </div>
 
                 <!-- Tarjeta 3 -->
                 <div class="pricing-card">
                 <h3>Web con Reservas / Citas</h3>
                 <p class="description">Todo lo anterior integrado a un sistema automatizado de gestión y agendamiento de citas.</p>
-                <div class="price">RD$ 20,000 – 35,000+</div>
+                <div class="price">Cotizar Servicio</div>
                 </div>
 
                 <!-- Tarjeta 4 -->
                 <div class="pricing-card">
                 <h3>Tienda Online</h3>
                 <p class="description">Plataforma con catálogo estructurado de productos, carrito de compras y pasarela/opciones de pago.</p>
-                <div class="price">RD$ 25,000 – 60,000+</div>
+                <div class="price">Cotizar Servicio</div>
                 </div>
 
                 <!-- Tarjeta 5 -->
@@ -210,45 +210,42 @@
         </section>
 
         <section id="contacto">
-            <h2>Contactame</h2>
-            <!-- Agregamos un ID al formulario para controlarlo con JavaScript -->
-            <form id="miFormulario" action="https://formsubmit.co/adrix01x@gmail.com" method="POST">
-                
-                <!-- Campo de Texto para el Nombre -->
-                <div>
-                    <label for="nombre">Nombre completo:</label>
-                    <input type="text" id="nombre" name="Nombre Completo" required placeholder="Ej. Juan Pérez">
-                </div>
+    <h2>Contactame</h2>
+    <form id="miFormulario" action="https://api.web3forms.com/submit" method="POST">
 
-                <!-- Campo de Correo Electrónico -->
-                <div>
-                    <label for="correo">Correo electrónico:</label>
-                    <input type="email" id="correo" name="Correo Electronico" required>
-                </div>
+        <input type="hidden" name="access_key" value="5e3de4e2-4e5c-437b-865d-357dee359027">
+        <input type="hidden" name="subject" value="Nuevo mensaje desde mi portafolio">
+        <input type="hidden" name="from_name" value="Portafolio Adrian Dev">
+        <!-- honeypot anti-spam: debe quedar vacío y oculto -->
+        <input type="checkbox" name="botcheck" class="hidden" style="display:none;">
 
-                <!--Campo de Texto del asunto-->
-                <div>
-                    <label for="asunto">Asunto:</label>
-                    <input type="text" id="asunto" name="Asunto del Mensaje" placeholder="¿En qué puedo ayudarte?">
-                    <input type="hidden" name="_subject" value="Nuevo mensaje desde mi portafolio">
-                    <input type="hidden" name="_captcha" value="false">
-                </div>
+        <div>
+            <label for="nombre">Nombre completo:</label>
+            <input type="text" id="nombre" name="Nombre Completo" required placeholder="Ej. Juan Pérez">
+        </div>
 
-                <!-- Área de Texto para Mensajes Largos -->
-                <div>
-                    <label for="mensaje">Mensaje:</label>
-                    <textarea id="mensaje" name="Mensaje Detallado" rows="4" cols="30"></textarea>
-                </div>
+        <div>
+            <label for="correo">Correo electrónico:</label>
+            <input type="email" id="correo" name="Correo Electronico" required placeholder="Ej. juan@example.com">
+        </div>
 
-                <!-- Botón de Envío -->
-                <div>
-                    <button type="submit" id="botonEnviar">Enviar Mensaje</button>
-                </div>
-            </form>
+        <div>
+            <label for="asunto">Asunto:</label>
+            <input type="text" id="asunto" name="Asunto del Mensaje" placeholder="¿En qué puedo ayudarte?">
+        </div>
 
-            <!-- Contenedor oculto para mostrar la respuesta de éxito o error -->
-            <div id="mensajeEstado" style="margin-top: 15px; font-weight: bold;"></div>
-        </section>
+        <div>
+            <label for="mensaje">Mensaje:</label>
+            <textarea id="mensaje" name="Mensaje Detallado" rows="5" cols="30" placeholder="Escribe tu mensaje aquí..."></textarea>
+        </div>
+
+        <div>
+            <button type="submit" id="botonEnviar">Enviar Mensaje</button>
+        </div>
+    </form>
+
+    <div id="mensajeEstado" style="margin-top: 15px; font-weight: bold;"></div>
+</section>
 
 
     </main>
