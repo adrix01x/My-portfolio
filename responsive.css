@@ -27,10 +27,6 @@
     #hero{
         margin-top: 3.5rem;
     }
-
-    #hero span{
-        display: none;
-    }
     
     section{
         scroll-margin-top: 3.5rem;
