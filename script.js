@@ -42,3 +42,29 @@ document.getElementById('miFormulario').addEventListener('submit', function(even
         boton.innerText = "Enviar Mensaje";
     });
 });
+
+//menu responsive //Hazme un menu responsive para el header, que al hacer click en el icono de hamburguesa se despliegue el menu y al hacer click en cualquier link del menu se cierre el menu.
+
+const menuBtn = document.querySelector("#menu-toggle");
+const menu = document.querySelector("#nav-links");
+
+
+menuBtn.addEventListener("click",()=>{
+
+    menu.classList.toggle("active");
+    menuBtn.classList.toggle("active");
+
+});
+
+const links = document.querySelectorAll(".nav-links a");
+
+links.forEach(link=>{
+
+    link.addEventListener("click",()=>{
+
+        menu.classList.remove("active");
+        menuBtn.classList.remove("active");
+
+    });
+
+});
