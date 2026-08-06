@@ -35,6 +35,19 @@
 </head>
 
 <body>
+    <div id="preloader"> <!-- Quitamos el tabindex de aquí -->
+    <div class="preloader-content">
+        <!-- Indicador visual de carga -->
+        <div class="lab-loader"></div>
+        
+        <!-- Texto con animación -->
+        <h2>Prepárate para entrar al laboratorio<span class="dots">...</span></h2>
+        
+        <!-- AGREGAMOS EL TABINDEX AQUÍ MISMOS -->
+        <a id="boton-entrar" class="btn-hero" tabindex="0">Entrar al Sistema</a>
+    </div>
+</div>
+
     <header>
         <nav id="navbar">    
             <div class="navbar-logo">

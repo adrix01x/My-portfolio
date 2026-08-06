@@ -24,10 +24,6 @@
         pointer-events:auto;
     }
     
-    #hero{
-        margin-top: 3.5rem;
-    }
-    
     section{
         scroll-margin-top: 3.5rem;
     }

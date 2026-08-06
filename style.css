@@ -18,6 +18,7 @@
 }
 
 html{
+    position: relative;
     scroll-behavior: smooth;
     font-family: 'Poppins', sans-serif;
 }
@@ -42,6 +43,11 @@ h2{
     text-wrap: balance;
 }
 
+main, header, footer{
+    display: none;
+    z-index: 1;
+}
+
 p{
     font-family: "Poppins", sans-serif;
     font-size: 1.25rem;
@@ -52,11 +58,88 @@ html, body {
     margin: 0;
     background: var(--second-background);
     color: var(--text);
-    overflow-x: hidden; /* Evita por completo el scroll horizontal */
 }
 
 section{
     padding:2rem;
+}
+
+#sobre-yo, #mi-info, #tecnologias, #proyectos, #servicios, #contacto, #tecnologias, footer {
+    /* Vincula los fotogramas a la posición del scroll en pantalla */
+    animation-timeline: view();
+    /* Inicia al asomar el 10% inferior y se completa al llegar al 40% de la pantalla */
+    animation-range: entry 10% cover 40%;
+    animation-name: crearSeccion;
+    animation-fill-mode: both;
+}
+
+/* Contenedor principal (Se mantiene tu excelente uso de Flexbox) */
+#preloader {
+    background-color: var(--second-background);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+    margin: 0;
+    width: 100%;
+    z-index: 9999; /* Asegura que esté por encima de todo */
+}
+
+/* Agrupador central */
+#preloader .preloader-content {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 1.5rem; /* Espacio entre el anillo y el texto */
+    width: 80%;
+}
+
+/* 1. Animación del "Escáner/Centrifugadora" de laboratorio */
+#preloader .lab-loader {
+    width: 60px;
+    height: 60px;
+    border: 3px solid rgba(255, 255, 255, 0.1); /* Borde base muy tenue */
+    border-top-color: var(--text); /* El color de tu texto será la parte que gira */
+    border-radius: 50%;
+    animation: spin 1s cubic-bezier(0.68, -0.55, 0.265, 1.55) infinite;
+}
+
+/* 2. Estilos y pulso para el texto */
+#preloader h2 {
+    color: var(--text);
+    font-size: 1.3rem;
+    font-family: monospace, sans-serif; /* Un toque más "tech" */
+    text-align: center;
+    margin: 0;
+    letter-spacing: 1px;
+    animation: pulse 2s ease-in-out infinite;
+}
+
+/* 3. Animación de los puntos suspensivos */
+#preloader .dots {
+    display: inline-block;
+    animation: blink 1.5s infinite;
+}
+
+#boton-entrar {
+    cursor: pointer;
+}
+
+/* --- KEYFRAMES (Las instrucciones de las animaciones) --- */
+
+@keyframes spin {
+    0% { transform: rotate(0deg); }
+    100% { transform: rotate(360deg); }
+}
+
+@keyframes pulse {
+    0%, 100% { opacity: 1; text-shadow: 0 0 10px rgba(255, 255, 255, 0.2); }
+    50% { opacity: 0.6; text-shadow: none; }
+}
+
+@keyframes blink {
+    0%, 20% { color: transparent; }
+    40%, 100% { color: var(--text); }
 }
 
 .menu-toggle {
@@ -93,12 +176,19 @@ section{
 }
 
 header {
-    position: fixed;   /* Lo fija en la pantalla */
-    top: 0;            /* Lo pega al borde superior */
-    left: 0;           /* Lo pega al borde izquierdo */
-    width: 100%;       /* Ancho completo */
+    position: fixed;    /* Cambiado de sticky a fixed para un mejor control */
+    top: 0;            
+    width: 100%;       
     color: white;
-    z-index: 99999;     /* Asegura que quede por encima de todo el contenido */
+    z-index: 99999;     
+    /* NUEVO: Transición suave para que no desaparezca de golpe */
+    transition: transform 0.4s ease-in-out; 
+}
+
+/* Esta clase la activa JavaScript cuando detecta que estás bajando */
+header.scroll-abajo {
+    /* Empuja el header hacia arriba completamente fuera de la pantalla */
+    transform: translateY(-100%); 
 }
 
 
@@ -180,7 +270,7 @@ ul a:hover{
     background:
         radial-gradient(circle at 20% 20%, rgba(124, 58, 237, 0.25), transparent 35%),
         radial-gradient(circle at 80% 30%, rgba(192, 132, 252, 0.18), transparent 35%),
-        linear-gradient(180deg, #18181B 0%, #121217 100%);
+        linear-gradient(180deg, var(--second-background) 100%, #121217 0%);
      /* Mantiene la sección en pantalla completa restando la altura estimada del menú */
     min-height: calc(100dvh - 72px); 
     /* Deja el espacio físico exacto para que el header no tape los títulos */
@@ -259,7 +349,7 @@ ul a:hover{
 }
 
 #sobre-yo{
-    background-image: linear-gradient(to bottom, #121217 20%, var(--second-background) 80%);
+    background-color: var(--second-background);
     padding-top: 2rem;
     padding-bottom: 2rem;
     min-height: 100vh;
@@ -409,10 +499,22 @@ span{
     padding-bottom: 1rem;
 }
 
-.pricing-container{
+.pricing-container {
     display: flex;
-    overflow-x: auto; /* Permite el desplazamiento horizontal si es necesario */
+    overflow-x: auto; /* Cambiado de 'scroll' a 'auto' para mejor rendimiento */
+    
+    /* 1. Ocultar barra en navegadores basados en Chromium (Chrome, Edge, Opera, Safari moderno) */
+    &::-webkit-scrollbar {
+        display: none;
+    }
+
+    /* 2. Ocultar barra en Firefox */
+    scrollbar-width: none;
+
+    /* 3. Ocultar barra en Internet Explorer y Edge antiguo */
+    -ms-overflow-style: none; 
 }
+
 
 .pricing-card{
     margin: 0.5rem;
@@ -581,4 +683,15 @@ footer p {
 /* Hover */
 ::-webkit-scrollbar-thumb:hover {
     background: var(--hover-color);
+}
+
+@keyframes crearSeccion {
+    from {
+        opacity: 0;
+        transform: translateY(60px) scale(0.95);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0) scale(1);
+    }
 }

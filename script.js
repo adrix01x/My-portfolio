@@ -68,3 +68,68 @@ links.forEach(link=>{
     });
 
 });
+
+// Asegúrate de cambiar 'boton-entrar' por el ID real de tu botón
+const boton = document.getElementById('boton-entrar');
+const preloader = document.getElementById('preloader');
+const mainContent = document.querySelector('main');
+const footer = document.querySelector('footer');
+let header = document.querySelector('header');
+const seccionHero = document.getElementById('hero');
+let yaEntro = false; // Variable para controlar si ya se ejecutó la función
+
+// 1. Creamos la función con toda tu lógica interna
+function ejecutarEntrada() {
+    mainContent.style.display = 'block';
+    header.style.display = 'block';
+    footer.style.display = 'block';
+
+     if (yaEntro) return;
+    yaEntro = true;
+    
+
+    setTimeout(() => {
+        seccionHero.scrollIntoView({ 
+            behavior: 'smooth', 
+            block: 'start' 
+        });
+    }, 50);
+    
+    // Forzamos el inicio arriba para evitar errores de cálculo en celulares
+    window.scrollTo(0, 0);
+
+    setTimeout(() => {
+        preloader.style.display = 'none'; 
+
+        let ultimoScroll = 0;
+        header = document.querySelector("header");
+        window.addEventListener("scroll", () => {
+            const scrollActual = window.scrollY;
+            // 1. Si el usuario baja el scroll y ya pasó el menú, lo ocultamos
+            if (scrollActual > ultimoScroll && scrollActual > 80) {
+                header.classList.add("scroll-abajo");
+            } 
+            // 2. Si el usuario sube el scroll, lo volvemos a mostrar
+            else {
+                header.classList.remove("scroll-abajo");
+            }
+            // Guardamos la posición actual para la siguiente comparación
+            ultimoScroll = scrollActual;
+        });
+
+    }, 500);
+}
+
+// 2. Evento para el click del mouse
+boton.addEventListener('click', ejecutarEntrada);
+
+window.addEventListener('keydown', (evento) => {
+    // Si presiona Enter y NO ha entrado todavía al sitio, ejecuta la función
+    if (evento.key === 'Enter' && !yaEntro) {
+        evento.preventDefault(); // Evita que la página parpadee o haga un scroll extraño
+        ejecutarEntrada();
+    }
+});
+
+
+
