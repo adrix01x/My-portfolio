@@ -78,16 +78,17 @@ let header = document.querySelector('header');
 const seccionHero = document.getElementById('hero');
 let yaEntro = false; // Variable para controlar si ya se ejecutó la función
 
-// 1. Creamos la función con toda tu lógica interna
 function ejecutarEntrada() {
+    // Es mejor poner el freno al principio para evitar que se ejecute el display si ya entró
+    if (yaEntro) return; 
+    yaEntro = true;
+    
+    // Mostramos el contenido
     mainContent.style.display = 'block';
     header.style.display = 'block';
     footer.style.display = 'block';
 
-     if (yaEntro) return;
-    yaEntro = true;
-    
-
+    // 1. Iniciamos el viaje bajando hacia el Hero
     setTimeout(() => {
         seccionHero.scrollIntoView({ 
             behavior: 'smooth', 
@@ -95,40 +96,46 @@ function ejecutarEntrada() {
         });
     }, 50);
     
-    // Forzamos el inicio arriba para evitar errores de cálculo en celulares
-    window.scrollTo(0, 0);
-
+    // 2. Esperamos a que la animación de bajar termine completamente (800ms es más seguro)
     setTimeout(() => {
+        // Borramos el preloader
         preloader.style.display = 'none'; 
 
+        // ¡AQUÍ ESTÁ LA MAGIA!
+        // Como el preloader (que ocupaba toda la pantalla inicial) ya no existe, 
+        // el #hero pasa a ser la parte más alta de la página. 
+        // Reiniciamos la cámara a 0,0 al instante para que no caiga en "Sobre mí".
+        window.scrollTo(0, 0);
+
+        // Activamos tu lógica del menú sticky
         let ultimoScroll = 0;
         header = document.querySelector("header");
+        
         window.addEventListener("scroll", () => {
             const scrollActual = window.scrollY;
-            // 1. Si el usuario baja el scroll y ya pasó el menú, lo ocultamos
+            
+            // Si baja y pasó el menú
             if (scrollActual > ultimoScroll && scrollActual > 80) {
                 header.classList.add("scroll-abajo");
             } 
-            // 2. Si el usuario sube el scroll, lo volvemos a mostrar
+            // Si sube
             else {
                 header.classList.remove("scroll-abajo");
             }
-            // Guardamos la posición actual para la siguiente comparación
             ultimoScroll = scrollActual;
         });
 
-    }, 500);
+    }, 800); // Subimos el tiempo a 800ms para asegurar que el scrollIntoView haya terminado
 }
 
 // 2. Evento para el click del mouse
-boton.addEventListener('click', ejecutarEntrada);
-
-window.addEventListener('keydown', (evento) => {
-    // Si presiona Enter y NO ha entrado todavía al sitio, ejecuta la función
-    if (evento.key === 'Enter' && !yaEntro) {
-        evento.preventDefault(); // Evita que la página parpadee o haga un scroll extraño
+window.addEventListener('load', () => {
+    
+    // Ejecutamos la función después de 3000 milisegundos (3 segundos)
+    setTimeout(() => {
         ejecutarEntrada();
-    }
+    }, 1500); 
+    
 });
 
 
